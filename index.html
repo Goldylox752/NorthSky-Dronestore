@@ -128,9 +128,8 @@ footer {
 🔥 SALE ENDS TONIGHT — FREE SHIPPING CANADA 🇨🇦
 </div>
 
-<!-- 🔥 HERO PRODUCT -->
+<!-- HERO -->
 <section class="hero">
-
   <h2>SkyMaster X1 Drone</h2>
 
   <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e"
@@ -145,36 +144,30 @@ footer {
     <span style="color:#22c55e; font-size:1.5rem;">$899 CAD</span>
   </p>
 
-  <button onclick="buyNow('SkyMaster X1')" style="margin-top:10px;">
-    🚀 Buy Now
-  </button>
+  <button onclick="buyNow('SkyMaster X1')">🚀 Buy Now</button>
 
   <p style="margin-top:10px;">✔ Free Shipping • ✔ COD Available</p>
-
 </section>
 
-<!-- ⭐ REVIEWS -->
+<!-- REVIEWS -->
 <section class="reviews">
-
   <h3>⭐ Customer Reviews (4.8/5)</h3>
-
-  <p>⭐⭐⭐⭐⭐ “Best drone I’ve ever owned. Super smooth footage.” – Jake M.</p>
-  <p>⭐⭐⭐⭐⭐ “Arrived fast in Canada. Works perfectly.” – Sarah L.</p>
-  <p>⭐⭐⭐⭐⭐ “Crazy value for the price. Worth every dollar.” – Mike R.</p>
-
+  <p>⭐⭐⭐⭐⭐ “Best drone I’ve ever owned.” – Jake M.</p>
+  <p>⭐⭐⭐⭐⭐ “Arrived fast in Canada.” – Sarah L.</p>
+  <p>⭐⭐⭐⭐⭐ “Worth every dollar.” – Mike R.</p>
 </section>
 
-<!-- 🛍️ PRODUCTS -->
+<!-- PRODUCTS -->
 <section>
-  <h2 style="text-align:center; margin-top:20px;">More Drones</h2>
+  <h2 style="text-align:center;">More Drones</h2>
   <div id="drone-gallery"></div>
 </section>
 
-<!-- 🔒 TRUST -->
+<!-- TRUST -->
 <section class="trust">
-  <p>🔒 100% Secure Checkout</p>
-  <p>📦 Tracked Shipping Across Canada</p>
-  <p>💸 Pay with Cash on Delivery</p>
+  <p>🔒 Secure Checkout</p>
+  <p>📦 Tracked Shipping</p>
+  <p>💸 Cash on Delivery</p>
   <p>↩️ 30-Day Guarantee</p>
 </section>
 
@@ -182,7 +175,7 @@ footer {
   © 2026 NorthSky Drones
 </footer>
 
-<!-- 🔥 STICKY BUY BUTTON -->
+<!-- STICKY BUTTON -->
 <div class="sticky-buy">
   <button onclick="buyNow('SkyMaster X1')" style="width:90%;">
     🚀 Buy Now - $899 CAD
@@ -207,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
       price: 699,
       oldPrice: 999,
       stock: 8,
-      desc: "HD Camera • Beginner Friendly • Foldable"
+      desc: "HD Camera • Beginner Friendly"
     }
   ];
 
@@ -223,24 +216,51 @@ document.addEventListener("DOMContentLoaded", function () {
       <img src="${drone.image}">
       <h3>${drone.name}</h3>
       <p style="color:#f87171;">🔥 Only ${drone.stock} left</p>
-      <p style="color:#38bdf8;">👀 ${viewers} people viewing</p>
+      <p style="color:#38bdf8;">👀 ${viewers} viewing</p>
       <p>${drone.desc}</p>
       <p>
         <span style="text-decoration:line-through;">$${drone.oldPrice}</span>
         <span class="price">$${drone.price} CAD</span>
       </p>
       <button onclick="buyNow('${drone.name}')">🚀 Buy Now</button>
-      <p style="font-size:0.75rem;">✔ Cash on Delivery Available</p>
     `;
 
     gallery.appendChild(card);
   });
 
+  // 🔥 LIVE POPUP
+  setInterval(() => {
+    const names = ["John", "Mike", "Sarah", "Chris"];
+    const cities = ["Toronto", "Vancouver", "Calgary", "Edmonton"];
+
+    const popup = document.createElement("div");
+    popup.innerHTML = `🔥 ${names[Math.random()*names.length|0]} from ${cities[Math.random()*cities.length|0]} just ordered!`;
+
+    popup.style = `
+      position:fixed;
+      bottom:80px;
+      left:20px;
+      background:#1e293b;
+      padding:10px;
+      border-radius:6px;
+      font-size:0.8rem;
+    `;
+
+    document.body.appendChild(popup);
+    setTimeout(() => popup.remove(), 4000);
+
+  }, 8000);
+
 });
 
+/* 🔥 MULTI PRODUCT CHECKOUT */
+const checkoutLinks = {
+  "SkyMaster X1": "https://buy.stripe.com/28E00caP15qA7ZRfHG2ZO0b",
+  "AeroFlyer 3000": "https://buy.stripe.com/bJe9AM3mzdX6gwn2UU2ZO0c"
+};
+
 function buyNow(name) {
-  localStorage.setItem("product", name);
-  window.location.href = "checkout.html";
+  window.location.href = checkoutLinks[name];
 }
 </script>
 
