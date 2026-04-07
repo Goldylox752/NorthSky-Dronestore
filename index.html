@@ -1,0 +1,97 @@
+<!-- 🔥 SALE BAR -->
+<div style="text-align:center; padding:10px; background:#16a34a; color:white;">
+🔥 SALE ENDS TONIGHT — FREE SHIPPING CANADA 🇨🇦
+</div>
+
+<!-- 🛍️ PRODUCT SECTION -->
+<section>
+  <h2 style="text-align:center;">Top Drones</h2>
+  <div id="drone-gallery"></div>
+</section>
+
+<!-- 🔒 TRUST BADGES -->
+<div style="text-align:center; padding:20px;">
+  <p>🔒 Secure Checkout</p>
+  <p>📦 Tracked Shipping</p>
+  <p>💸 Cash on Delivery Available</p>
+  <p>🇨🇦 Ships from Canada</p>
+</div>
+
+<!-- 🚀 SCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const drones = [
+    {
+      name: "SkyMaster X1",
+      image: "images/skymasterx1.jpg",
+      price: 899,
+      oldPrice: 1199,
+      stock: 5,
+      desc: "4K Camera • 30min Flight • GPS Auto Return"
+    },
+    {
+      name: "AeroFlyer 3000",
+      image: "images/aeroflyer3000.jpg",
+      price: 699,
+      oldPrice: 999,
+      stock: 8,
+      desc: "HD Camera • Beginner Friendly • Foldable"
+    }
+  ];
+
+  const gallery = document.getElementById("drone-gallery");
+
+  if (!gallery) {
+    console.error("❌ #drone-gallery not found");
+    return;
+  }
+
+  drones.forEach((drone, index) => {
+    const viewers = Math.floor(Math.random() * 10) + 5;
+
+    const card = document.createElement("div");
+    card.className = "drone-card";
+
+    card.innerHTML = `
+      <img src="${drone.image}" onerror="this.src='https://via.placeholder.com/300?text=Drone'">
+
+      <h3>${drone.name}</h3>
+
+      <p style="font-size:0.85rem; color:#f87171;">
+        🔥 Only ${drone.stock} left in stock
+      </p>
+
+      <p style="font-size:0.8rem; color:#38bdf8;">
+        👀 ${viewers} people viewing this now
+      </p>
+
+      <p>${drone.desc}</p>
+
+      <p>
+        <span style="text-decoration:line-through; color:#94a3b8;">
+          $${drone.oldPrice}
+        </span>
+        <span class="price">$${drone.price} CAD</span>
+      </p>
+
+      <button onclick="buyNow('${drone.name}')">
+        🚀 Buy Now
+      </button>
+
+      <p style="font-size:0.75rem; margin-top:5px;">
+        ✔ Cash on Delivery Available
+      </p>
+    `;
+
+    gallery.appendChild(card);
+  });
+
+});
+
+/* 🔥 BUY BUTTON */
+function buyNow(name) {
+  localStorage.setItem("product", name);
+  window.location.href = "checkout.html";
+}
+</script>
