@@ -20,6 +20,11 @@ header {
   text-align:center;
 }
 
+header img {
+  height:50px;
+  margin-bottom:10px;
+}
+
 header h1 { font-size:2rem; }
 header p { font-size:0.9rem; color:#94a3b8; }
 
@@ -99,6 +104,7 @@ footer {
 <body>
 
 <header>
+  <img src="logo.png">
   <h1>🚁 NorthSky Drones</h1>
   <p>Premium Drones for Canada</p>
   <p style="font-size:0.8rem; color:#94a3b8;">
@@ -122,6 +128,10 @@ footer {
     Capture stunning 4K footage with ultra-stable flight and GPS return.
   </p>
 
+  <p style="margin-top:10px;">
+    Perfect for travel, real estate shots, outdoor adventures, and beginners looking for pro-level footage.
+  </p>
+
   <p style="color:#f87171;">⚠️ High demand — selling out fast in Canada</p>
 
   <ul style="text-align:left; max-width:300px; margin:10px auto; line-height:1.6;">
@@ -135,6 +145,10 @@ footer {
   <p>
     <span style="text-decoration:line-through;">$1199</span>
     <span style="color:#22c55e; font-size:1.5rem;">$899 CAD</span>
+  </p>
+
+  <p style="color:#22c55e; font-weight:bold;">
+    ✔ 30-Day Money Back Guarantee — No Questions Asked
   </p>
 
   <button onclick="buyNow('SkyMaster X1')">🚀 Buy Now</button>
@@ -154,9 +168,14 @@ footer {
 <!-- REVIEWS -->
 <section class="reviews">
   <h3>⭐ Customer Reviews (4.7/5)</h3>
+
   <p>⭐⭐⭐⭐⭐ “Camera is insane.” – Jake (Toronto)</p>
   <p>⭐⭐⭐⭐ “Took time to learn but love it.” – Sarah (Calgary)</p>
   <p>⭐⭐⭐⭐⭐ “Fast shipping!” – Mike (Vancouver)</p>
+
+  <p style="margin-top:10px;">
+    ⭐⭐⭐⭐⭐ “I bought this for camping trips and it’s been amazing. Battery lasts longer than expected and the footage is super stable even in wind.” – Daniel (Edmonton)
+  </p>
 </section>
 
 <!-- MORE PRODUCTS -->
@@ -238,7 +257,6 @@ document.addEventListener("DOMContentLoaded", function () {
     gallery.appendChild(card);
   });
 
-  // LIVE POPUP
   setInterval(() => {
     const names = ["John", "Mike", "Sarah", "Chris"];
     const cities = ["Toronto", "Vancouver", "Calgary", "Edmonton"];
