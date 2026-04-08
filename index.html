@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NorthSky | Premium Drone Store</title>
+<title>NorthSky | Official Store</title>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-528699336"></script>
 
@@ -16,17 +16,32 @@ color:#fff;
 }
 
 /* HEADER */
-header{text-align:center;padding:15px;background:#111827;border-bottom:1px solid #1f2937;}
-.sale{background:#22c55e;padding:10px;text-align:center;font-weight:bold;}
+header{
+text-align:center;
+padding:14px;
+background:#111827;
+border-bottom:1px solid #1f2937;
+}
+.sale{
+background:#22c55e;
+padding:10px;
+text-align:center;
+font-weight:bold;
+}
 
 /* HERO */
 .hero{text-align:center;padding:20px;}
-.gallery{display:flex;gap:10px;overflow-x:auto;}
-.gallery img{
-width:85%;
+.hero h1{font-size:22px;margin-bottom:10px;}
+
+button{
+background:linear-gradient(135deg,#22c55e,#16a34a);
+border:none;
+padding:14px;
+width:100%;
 border-radius:12px;
-height:220px;
-object-fit:cover;
+font-weight:bold;
+font-size:15px;
+margin-top:10px;
 }
 
 /* TRUST BAR */
@@ -40,27 +55,35 @@ color:#9ca3af;
 
 /* TIKTOK FEED */
 .tiktok-feed{
-height:75vh;
+height:80vh;
 overflow-y:scroll;
 scroll-snap-type:y mandatory;
-margin:20px;
 }
-.tiktok-video{
-height:75vh;
+.card{
+height:80vh;
 scroll-snap-align:start;
 position:relative;
 }
-.tiktok-video video{
+.card video{
 width:100%;
 height:100%;
 object-fit:cover;
 }
+
+/* OVERLAY */
 .overlay{
 position:absolute;
 bottom:0;
 width:100%;
 padding:15px;
-background:linear-gradient(to top,rgba(0,0,0,0.8),transparent);
+background:linear-gradient(to top,rgba(0,0,0,0.85),transparent);
+}
+.overlay h3{font-size:16px;}
+.overlay p{font-size:13px;color:#ccc;}
+
+/* BUY FLOAT */
+.buy{
+margin-top:10px;
 }
 
 /* PRODUCTS */
@@ -75,24 +98,6 @@ background:#111827;
 padding:12px;
 border-radius:12px;
 }
-.product img{
-width:100%;
-height:140px;
-object-fit:cover;
-border-radius:8px;
-}
-
-button{
-background:linear-gradient(135deg,#22c55e,#16a34a);
-border:none;
-padding:12px;
-width:100%;
-border-radius:10px;
-margin-top:8px;
-font-weight:bold;
-cursor:pointer;
-}
-
 .inventory{
 color:#f87171;
 font-size:12px;
@@ -105,7 +110,7 @@ border:2px solid #22c55e;
 text-align:center;
 }
 
-/* STICKY CTA */
+/* STICKY */
 .sticky{
 position:fixed;
 bottom:0;
@@ -136,41 +141,52 @@ display:none;
 <p style="font-size:12px;color:#aaa;">AERIAL SYSTEMS</p>
 </header>
 
-<div class="sale">🔥 SAVE $300 — FREE SHIPPING 🇨🇦</div>
+<div class="sale">🔥 FREE SHIPPING 🇨🇦 • LIMITED STOCK</div>
 
+<!-- HERO -->
 <section class="hero">
-<h1>DJI-Level Drones Without the $2000 Price</h1>
+<h1>4K Drone Footage Without Paying $2000+</h1>
+<p style="color:#9ca3af;">Built for creators • Easy to fly • Cinematic results</p>
 
-<div class="gallery">
-<img src="https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg">
-<img src="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg">
-<img src="https://images.pexels.com/photos/336232/pexels-photo-336232.jpeg">
-</div>
-
-<button onclick="buy('pro')">🔥 Limited Stock – Get Yours Now</button>
+<button onclick="buy('pro')">🔥 Get NorthSky Pro Now</button>
 
 <div class="trust">
-<span>🚚 Free Shipping</span>
+<span>🚚 2–5 Day Shipping</span>
 <span>🔒 Secure Checkout</span>
 <span>⭐ 4.8 Rating</span>
 </div>
 </section>
 
-<!-- TIKTOK FEED -->
-<section>
-<div class="tiktok-feed">
+<!-- TIKTOK FEED (SELLING VERSION) -->
+<section class="tiktok-feed">
 
-<div class="tiktok-video">
+<div class="card">
 <video muted loop playsinline src="https://cdn.coverr.co/videos/coverr-flying-over-mountains-1570/1080p.mp4"></video>
-<div class="overlay">🔥 “Looks insane for this price”</div>
+<div class="overlay">
+<h3>NorthSky Pro 🔥</h3>
+<p>“Didn’t expect this quality…”</p>
+<button class="buy" onclick="buy('pro')">Buy Now – $899</button>
+</div>
 </div>
 
-<div class="tiktok-video">
+<div class="card">
 <video muted loop playsinline src="https://cdn.coverr.co/videos/coverr-drone-shot-over-ocean-5192/1080p.mp4"></video>
-<div class="overlay">😳 “Didn’t expect this quality”</div>
+<div class="overlay">
+<h3>Long Range + GPS</h3>
+<p>Perfect cinematic shots</p>
+<button class="buy" onclick="buy('max')">View Max – $1099</button>
+</div>
 </div>
 
+<div class="card">
+<video muted loop playsinline src="https://cdn.coverr.co/videos/coverr-aerial-view-of-a-lake-1573/1080p.mp4"></video>
+<div class="overlay">
+<h3>Beginner Friendly</h3>
+<p>“First flight and got this…”</p>
+<button class="buy" onclick="buy('lite')">Start – $599</button>
 </div>
+</div>
+
 </section>
 
 <!-- PRODUCTS -->
@@ -206,9 +222,9 @@ display:none;
 </div>
 
 <div class="product">
-<h4>Skymaster X1 Pro Kit</h4>
+<h4>Starter Kit</h4>
 <strong>$199</strong>
-<button onclick="buy('kit')">Buy Now</button>
+<button onclick="buy('kit')">Add On</button>
 </div>
 
 <div class="product">
@@ -219,18 +235,20 @@ display:none;
 
 <div class="product featured">
 <h4>🔥 Creator Bundle</h4>
-<p>Best Value • Save $400</p>
+<p>Drone + Accessories • Save $400</p>
 <strong>$1299</strong>
-<button onclick="buy('pro')">Get Bundle</button>
+<button onclick="buy('pro')">Best Value</button>
 </div>
 
 </div>
 </section>
 
+<!-- STICKY -->
 <div class="sticky" id="sticky">
 <button onclick="buy('pro')">🔥 Buy Now</button>
 </div>
 
+<!-- POPUP -->
 <div class="popup" id="popup">Someone just bought a NorthSky Pro</div>
 
 <script>
@@ -245,7 +263,9 @@ kit:"https://buy.stripe.com/28E00caP15qA7ZRfHG2ZO0b",
 aero:"https://buy.stripe.com/bJe9AM3mzdX6gwn2UU2ZO0c"
 };
 
-function buy(p){window.open(links[p],"_blank");}
+function buy(p){
+window.open(links[p],"_blank");
+}
 
 /* AUTOPLAY */
 document.querySelectorAll("video").forEach(v=>{
@@ -254,28 +274,37 @@ e.forEach(x=>x.isIntersecting?v.play():v.pause());
 },{threshold:0.7}).observe(v);
 });
 
-/* SCARCITY */
+/* SMART SCARCITY */
 setInterval(()=>{
 for(let i=1;i<=4;i++){
 let el=document.getElementById("inv"+i);
 if(!el) continue;
 let num=parseInt(el.innerText.match(/\d+/)[0]);
-if(num>3) el.innerText="Only "+(num-1)+" left";
+if(num>3 && Math.random()>0.4){
+el.innerText="Only "+(num-1)+" left";
 }
-},15000);
+}
+},12000);
 
 /* STICKY */
 window.addEventListener("scroll",()=>{
-if(window.scrollY>400)
+if(window.scrollY>300)
 document.getElementById("sticky").style.display="block";
 });
 
-/* POPUP */
+/* POPUP VARIATIONS */
+const msgs=[
+"Someone just bought a NorthSky Pro",
+"New order placed in Canada 🇨🇦",
+"Customer just grabbed the Pro 🔥"
+];
+
 setInterval(()=>{
 const popup=document.getElementById("popup");
+popup.innerText=msgs[Math.floor(Math.random()*msgs.length)];
 popup.style.display="block";
 setTimeout(()=>popup.style.display="none",3000);
-},8000);
+},7000);
 
 </script>
 
