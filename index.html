@@ -7,11 +7,13 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
+
 body{
   font-family:-apple-system,BlinkMacSystemFont,Arial;
   background:#0b1220;
   color:#fff;
 }
+
 .container{max-width:520px;margin:0 auto;}
 
 header{
@@ -56,6 +58,20 @@ button{
   cursor:pointer;
 }
 
+.hero-card{
+  margin:15px;
+  background:#111827;
+  border-radius:16px;
+  padding:15px;
+}
+
+.hero-card img{
+  width:100%;
+  border-radius:12px;
+  margin-bottom:12px;
+}
+
+/* PRODUCTS */
 .products{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -109,19 +125,6 @@ button{
   margin-bottom:10px;
 }
 
-.hero-card{
-  margin:15px;
-  background:#111827;
-  border-radius:16px;
-  padding:15px;
-}
-
-.hero-card img{
-  width:100%;
-  border-radius:12px;
-  margin-bottom:12px;
-}
-
 .sticky{
   position:fixed;
   bottom:0;
@@ -155,12 +158,9 @@ button{
 </p>
 </section>
 
-<!-- 🍎 HERO PRODUCT (APPLE STYLE) -->
+<!-- HERO PRODUCT -->
 <div class="hero-card">
-<img 
-src="https://cdn.pixabay.com/photo/2017/01/06/19/15/drone-1958711_1280.jpg"
-loading="eager"
-onerror="this.src='https://picsum.photos/800/600?drone-main'">
+<img src="https://source.unsplash.com/1200x800/?drone,cinematic" loading="eager">
 
 <h2>NorthSky Max</h2>
 <p style="color:#9ca3af;font-size:14px;">Our most powerful cinematic 4K drone.</p>
@@ -173,8 +173,7 @@ onerror="this.src='https://picsum.photos/800/600?drone-main'">
 
 <div class="product">
 <span class="badge">🔥 Popular</span>
-<img src="https://cdn.pixabay.com/photo/2016/11/29/09/32/drone-1866742_1280.jpg"
-onerror="this.src='https://picsum.photos/800/600?1'">
+<img src="https://source.unsplash.com/600x400/?drone,quadcopter">
 <h4>NorthSky Lite</h4>
 <div class="price">$599</div>
 <button onclick="go('lite')">Buy</button>
@@ -182,8 +181,7 @@ onerror="this.src='https://picsum.photos/800/600?1'">
 
 <div class="product">
 <span class="badge">🔥 Premium</span>
-<img src="https://cdn.pixabay.com/photo/2017/08/06/00/27/drone-2581872_1280.jpg"
-onerror="this.src='https://picsum.photos/800/600?2'">
+<img src="https://source.unsplash.com/600x400/?drone,4k">
 <h4>NorthSky X</h4>
 <div class="price">$1299</div>
 <button onclick="go('x')">Buy</button>
@@ -191,24 +189,21 @@ onerror="this.src='https://picsum.photos/800/600?2'">
 
 <div class="product">
 <span class="badge">🔥 Kit</span>
-<img src="https://cdn.pixabay.com/photo/2018/01/10/19/15/drone-3073719_1280.jpg"
-onerror="this.src='https://picsum.photos/800/600?3'">
+<img src="https://source.unsplash.com/600x400/?drone,gear">
 <h4>Skymaster Kit</h4>
 <div class="price">$199</div>
 <button onclick="go('kit')">Buy</button>
 </div>
 
 <div class="product">
-<img src="https://cdn.pixabay.com/photo/2016/11/18/14/33/drone-1836070_1280.jpg"
-onerror="this.src='https://picsum.photos/800/600?4'">
+<img src="https://source.unsplash.com/600x400/?drone,aerial">
 <h4>Aeroflyer 3000</h4>
 <div class="price">$699</div>
 <button onclick="go('aero')">Buy</button>
 </div>
 
 <div class="product">
-<img src="https://cdn.pixabay.com/photo/2016/11/29/09/32/drone-1866742_1280.jpg"
-onerror="this.src='https://picsum.photos/800/600?5'">
+<img src="https://source.unsplash.com/600x400/?drone,technology">
 <h4>Sky Master X1</h4>
 <div class="price">$899</div>
 <button onclick="go('master')">Buy</button>
