@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorthSky | Drone Store</title>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-528699336"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-528699336');
+</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:-apple-system,BlinkMacSystemFont,Arial;
+background:#0b1220;
+color:#fff;
+}
+
+header{text-align:center;padding:15px;background:#111827;}
+.sale{background:#22c55e;padding:10px;text-align:center;font-weight:bold;}
+
+.hero{text-align:center;padding:20px;}
+
+.gallery{display:flex;gap:10px;overflow-x:auto;}
+.gallery img{width:85%;border-radius:12px;}
+
+iframe{width:100%;height:220px;border-radius:10px;}
+
+.viral-feed{height:360px;overflow-y:auto;}
+.viral-video{height:360px;margin-bottom:10px;border-radius:12px;overflow:hidden;}
+.viral-video video{width:100%;height:100%;object-fit:cover;}
+
+.products{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+padding:20px;
+}
+
+.product{
+background:#111827;
+padding:10px;
+border-radius:10px;
+}
+
+.product img{
+width:100%;
+height:120px;
+object-fit:cover;
+border-radius:8px;
+}
+
+button{
+background:#22c55e;
+border:none;
+padding:12px;
+width:100%;
+border-radius:8px;
+margin-top:8px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.review{
+background:#111827;
+padding:10px;
+border-radius:10px;
+margin:10px 20px;
+display:flex;
+gap:10px;
+}
+
+.review img{
+width:60px;
+height:60px;
+border-radius:8px;
+object-fit:cover;
+}
+
+.inventory{
+color:#f87171;
+font-size:0.9rem;
+margin-top:5px;
+}
+
+.sticky{
+position:fixed;
+bottom:0;
+width:100%;
+background:#000;
+padding:10px;
+display:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>NORTHSKY</h2>
+<p style="font-size:12px;color:#aaa;">AERIAL SYSTEMS</p>
+</header>
+
+<div class="sale">🔥 SAVE $300 — FREE SHIPPING 🇨🇦</div>
+
+<section class="hero">
+<h1>DJI-Level Drones Without the Price</h1>
+
+<div class="gallery">
+<img src="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg">
+<img src="https://images.pexels.com/photos/336232/pexels-photo-336232.jpeg">
+<img src="https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg">
+</div>
+
+<button onclick="buy('main')">🚀 Shop Now</button>
+</section>
+
+<section class="hero">
+<h3>🎥 Real Drone Footage</h3>
+<iframe src="https://www.youtube.com/embed/7jN0K7z1C7A"></iframe>
+</section>
+
+<!-- 🔥 TIKTOK STYLE VIRAL -->
+<section class="hero">
+<h3>🔥 Trending Now</h3>
+
+<div class="viral-feed">
+
+<div class="viral-video">
+<video muted autoplay loop playsinline>
+<source src="https://cdn.coverr.co/videos/coverr-drone-flying-through-mountains-1566/1080p.mp4">
+</video>
+</div>
+
+<div class="viral-video">
+<video muted autoplay loop playsinline>
+<source src="https://cdn.coverr.co/videos/coverr-drone-shot-over-water-5191/1080p.mp4">
+</video>
+</div>
+
+</div>
+</section>
+
+<!-- 🚀 PRODUCTS -->
+<section>
+<h3 style="text-align:center;">🚀 Choose Your Drone</h3>
+
+<div class="products">
+
+<div class="product">
+<img src="https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg">
+<h4>NorthSky Lite</h4>
+<p>Beginner • Stable Flight</p>
+<strong>$599</strong>
+<div class="inventory" id="inv1">Only 17 left</div>
+<button onclick="buy('lite')">Buy</button>
+</div>
+
+<div class="product">
+<img src="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg">
+<h4>NorthSky Pro</h4>
+<p>4K • Best Seller</p>
+<strong>$899</strong>
+<div class="inventory" id="inv2">Only 12 left</div>
+<button onclick="buy('pro')">Buy</button>
+</div>
+
+<div class="product">
+<img src="https://images.pexels.com/photos/336232/pexels-photo-336232.jpeg">
+<h4>NorthSky Max</h4>
+<p>Long Range • GPS</p>
+<strong>$1099</strong>
+<div class="inventory" id="inv3">Only 9 left</div>
+<button onclick="buy('max')">Buy</button>
+</div>
+
+<div class="product">
+<img src="https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg">
+<h4>NorthSky X</h4>
+<p>Sport Mode • Fast</p>
+<strong>$1299</strong>
+<div class="inventory" id="inv4">Only 6 left</div>
+<button onclick="buy('x')">Buy</button>
+</div>
+
+<div class="product">
+<img src="https://images.pexels.com/photos/1087180/pexels-photo-1087180.jpeg">
+<h4>NorthSky Ultra</h4>
+<p>Cinematic • Premium</p>
+<strong>$1499</strong>
+<div class="inventory" id="inv5">Only 4 left</div>
+<button onclick="buy('ultra')">Buy</button>
+</div>
+
+</div>
+</section>
+
+<!-- ⭐ REVIEWS -->
+<section>
+<h3 style="text-align:center;">⭐ Real Customers</h3>
+
+<div class="review">
+<img src="https://randomuser.me/api/portraits/men/32.jpg">
+<div>"Looks exactly like DJI footage 🔥"</div>
+</div>
+
+<div class="review">
+<img src="https://randomuser.me/api/portraits/women/45.jpg">
+<div>"First drone and I'm hooked"</div>
+</div>
+
+</section>
+
+<div class="sticky" id="sticky">
+<button onclick="buy('sticky')">🚀 Buy Now</button>
+</div>
+
+<script>
+const links = {
+lite:"https://buy.stripe.com/test_lite",
+pro:"https://buy.stripe.com/test_pro",
+max:"https://buy.stripe.com/test_max",
+x:"https://buy.stripe.com/test_x",
+ultra:"https://buy.stripe.com/test_ultra",
+main:"https://buy.stripe.com/test_pro",
+sticky:"https://buy.stripe.com/test_pro"
+};
+
+function buy(product){
+window.open(links[product],"_blank");
+}
+
+/* SCARCITY FAKE DROP */
+setInterval(()=>{
+for(let i=1;i<=5;i++){
+let el=document.getElementById("inv"+i);
+let num=parseInt(el.innerText.match(/\d+/)[0]);
+if(num>3){
+el.innerText="Only "+(num-1)+" left";
+}
+}
+},15000);
+
+/* STICKY */
+window.addEventListener("scroll",()=>{
+if(window.scrollY>400){
+document.getElementById("sticky").style.display="block";
+}
+});
+</script>
+
+</body>
+</html>
