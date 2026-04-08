@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NorthSky | Drone Store</title>
+<title>NorthSky | Premium Drone Store</title>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-528699336"></script>
 <script>
@@ -15,7 +15,6 @@ gtag('config', 'G-528699336');
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-
 body{
 font-family:-apple-system,BlinkMacSystemFont,Arial;
 background:#0b1220;
@@ -27,7 +26,6 @@ header{text-align:center;padding:15px;background:#111827;border-bottom:1px solid
 .sale{background:#22c55e;padding:10px;text-align:center;font-weight:bold;}
 
 .hero{text-align:center;padding:20px;}
-
 .gallery{display:flex;gap:10px;overflow-x:auto;}
 .gallery img{
 width:85%;
@@ -36,33 +34,7 @@ height:220px;
 object-fit:cover;
 }
 
-/* VIDEO */
 iframe{width:100%;height:230px;border-radius:10px;margin-top:10px;}
-
-/* VIRAL */
-.viral-feed{height:400px;overflow-y:auto;scroll-snap-type:y mandatory;}
-.viral-video{
-height:400px;
-margin-bottom:10px;
-border-radius:14px;
-overflow:hidden;
-scroll-snap-align:start;
-position:relative;
-}
-.viral-video video{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-.overlay{
-position:absolute;
-bottom:0;
-left:0;
-right:0;
-padding:10px;
-background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);
-font-size:14px;
-}
 
 /* PRODUCTS */
 .products{
@@ -76,7 +48,9 @@ padding:20px;
 background:#111827;
 padding:12px;
 border-radius:12px;
+transition:0.2s;
 }
+.product:hover{transform:scale(1.02);}
 
 .product img{
 width:100%;
@@ -84,8 +58,6 @@ height:140px;
 object-fit:cover;
 border-radius:8px;
 }
-
-.product h4{margin-top:6px;}
 
 button{
 background:linear-gradient(135deg,#22c55e,#16a34a);
@@ -98,28 +70,17 @@ font-weight:bold;
 cursor:pointer;
 }
 
+.secure{
+font-size:11px;
+color:#9ca3af;
+text-align:center;
+margin-top:4px;
+}
+
 .inventory{
 color:#f87171;
 font-size:0.85rem;
 margin-top:4px;
-}
-
-/* REVIEWS */
-.review{
-background:#111827;
-padding:10px;
-border-radius:10px;
-margin:10px 20px;
-display:flex;
-gap:10px;
-align-items:center;
-}
-
-.review img{
-width:55px;
-height:55px;
-border-radius:8px;
-object-fit:cover;
 }
 
 /* STICKY */
@@ -143,7 +104,6 @@ display:none;
 
 <div class="sale">🔥 SAVE $300 — FREE SHIPPING 🇨🇦</div>
 
-<!-- HERO -->
 <section class="hero">
 <h1>DJI-Level Drones Without the $2000 Price</h1>
 
@@ -154,157 +114,131 @@ display:none;
 </div>
 
 <button onclick="buy('pro')">🚀 Shop Best Seller</button>
+<p class="secure">🔒 Secure Checkout • Stripe • Apple Pay</p>
 </section>
 
-<!-- REAL DRONE FOOTAGE -->
 <section class="hero">
 <h3>🎥 Real Drone Footage</h3>
 <iframe src="https://www.youtube.com/embed/1La4QzGeaaQ?rel=0" allowfullscreen></iframe>
 </section>
 
-<!-- VIRAL SECTION -->
-<section class="hero">
-<h3>🔥 Trending Right Now</h3>
-
-<div class="viral-feed">
-
-<div class="viral-video">
-<video muted loop playsinline>
-<source src="https://cdn.coverr.co/videos/coverr-flying-over-mountains-1570/1080p.mp4">
-</video>
-<div class="overlay">“This footage looks unreal 😳”</div>
-</div>
-
-<div class="viral-video">
-<video muted loop playsinline>
-<source src="https://cdn.coverr.co/videos/coverr-drone-shot-over-ocean-5192/1080p.mp4">
-</video>
-<div class="overlay">“Didn’t expect this quality…”</div>
-</div>
-
-<div class="viral-video">
-<video muted loop playsinline>
-<source src="https://cdn.coverr.co/videos/coverr-aerial-view-of-a-lake-1573/1080p.mp4">
-</video>
-<div class="overlay">“First flight and got this 🔥”</div>
-</div>
-
-</div>
-</section>
-
-<!-- PRODUCTS -->
 <section>
-<h3 style="text-align:center;">🚀 Choose Your Drone</h3>
+<h3 style="text-align:center;">🚀 Shop Drones</h3>
 
 <div class="products">
 
+<!-- LITE -->
 <div class="product">
 <img src="https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg">
 <h4>NorthSky Lite</h4>
 <p>Beginner • Stable</p>
 <strong>$599</strong>
 <div class="inventory" id="inv1">Only 18 left</div>
-<button onclick="buy('lite')">Buy</button>
+<button onclick="buy('lite')">🔥 Buy Now</button>
+<p class="secure">🔒 Secure Checkout</p>
 </div>
 
+<!-- PRO -->
 <div class="product">
 <img src="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg">
 <h4>NorthSky Pro</h4>
 <p>4K • Best Seller</p>
 <strong>$899</strong>
 <div class="inventory" id="inv2">Only 12 left</div>
-<button onclick="buy('pro')">Buy</button>
+<button onclick="buy('pro')">🚀 Best Seller</button>
+<p class="secure">🔒 Secure Checkout</p>
 </div>
 
+<!-- MAX -->
 <div class="product">
 <img src="https://images.pexels.com/photos/336232/pexels-photo-336232.jpeg">
 <h4>NorthSky Max</h4>
 <p>Long Range • GPS</p>
 <strong>$1099</strong>
 <div class="inventory" id="inv3">Only 9 left</div>
-<button onclick="buy('max')">Buy</button>
+<button onclick="buy('max')">Buy Now</button>
+<p class="secure">🔒 Secure Checkout</p>
 </div>
 
+<!-- X -->
 <div class="product">
 <img src="https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg">
 <h4>NorthSky X</h4>
 <p>Sport Mode • Fast</p>
 <strong>$1299</strong>
 <div class="inventory" id="inv4">Only 6 left</div>
-<button onclick="buy('x')">Buy</button>
+<button onclick="buy('x')">Buy Now</button>
+<p class="secure">🔒 Secure Checkout</p>
+</div>
+
+<!-- EXTRA PRODUCTS -->
+<div class="product">
+<img src="https://images.pexels.com/photos/1087180/pexels-photo-1087180.jpeg">
+<h4>Skymaster X1 Pro Kit</h4>
+<p>Starter Kit</p>
+<strong>$199</strong>
+<button onclick="buy('kit')">Buy Now</button>
+<p class="secure">🔒 Secure Checkout</p>
 </div>
 
 <div class="product">
-<img src="https://images.pexels.com/photos/1087180/pexels-photo-1087180.jpeg">
-<h4>NorthSky Ultra</h4>
-<p>Cinematic • Premium</p>
-<strong>$1499</strong>
-<div class="inventory" id="inv5">Only 4 left</div>
-<button onclick="buy('ultra')">Buy</button>
+<img src="https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg">
+<h4>Aeroflyer 3000</h4>
+<p>Advanced Flight</p>
+<strong>$699</strong>
+<button onclick="buy('aero')">Buy Now</button>
+<p class="secure">🔒 Secure Checkout</p>
+</div>
+
+<div class="product">
+<img src="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg">
+<h4>Sky Master X1</h4>
+<p>Pro Edition</p>
+<strong>$899</strong>
+<button onclick="buy('master')">Buy Now</button>
+<p class="secure">🔒 Secure Checkout</p>
 </div>
 
 </div>
 </section>
 
-<!-- REVIEWS -->
-<section>
-<h3 style="text-align:center;">⭐ Real Customers</h3>
-
-<div class="review">
-<img src="https://randomuser.me/api/portraits/men/32.jpg">
-<div>"Looks exactly like DJI footage 🔥"</div>
-</div>
-
-<div class="review">
-<img src="https://randomuser.me/api/portraits/women/45.jpg">
-<div>"First drone and I'm hooked"</div>
-</div>
-
-</section>
-
-<!-- STICKY CTA -->
 <div class="sticky" id="sticky">
 <button onclick="buy('pro')">🚀 Buy Now</button>
 </div>
 
 <script>
-/* STRIPE LINKS */
+
+/* ✅ STRIPE LINKS CONNECTED PROPERLY */
 const links = {
-lite:"https://buy.stripe.com/YOUR_LITE",
-pro:"https://buy.stripe.com/YOUR_PRO",
-max:"https://buy.stripe.com/YOUR_MAX",
-x:"https://buy.stripe.com/YOUR_X",
-ultra:"https://buy.stripe.com/YOUR_ULTRA"
+  lite:"https://buy.stripe.com/dRm5kw4qDbOYa7Z3YY2ZO0h",
+  pro:"https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i",
+  max:"https://buy.stripe.com/4gMdR2bT52eoa7Z9ji2ZO0g",
+  x:"https://buy.stripe.com/00w9AM7CP6uE93Vanm2ZO0f",
+  kit:"https://buy.stripe.com/28E00caP15qA7ZRfHG2ZO0b",
+  aero:"https://buy.stripe.com/bJe9AM3mzdX6gwn2UU2ZO0c",
+  master:"https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i"
 };
 
 function buy(product){
-window.open(links[product],"_blank");
+  console.log("Buying:", product);
+  window.open(links[product], "_blank");
 }
-
-/* VIRAL AUTOPLAY */
-const vids=document.querySelectorAll(".viral-video video");
-const obs=new IntersectionObserver((entries)=>{
-entries.forEach(e=>{
-if(e.isIntersecting){e.target.play();}
-else{e.target.pause();}
-});
-},{threshold:0.6});
-vids.forEach(v=>obs.observe(v));
 
 /* SCARCITY */
 setInterval(()=>{
-for(let i=1;i<=5;i++){
-let el=document.getElementById("inv"+i);
-let num=parseInt(el.innerText.match(/\d+/)[0]);
-if(num>3){el.innerText="Only "+(num-1)+" left";}
-}
+  for(let i=1;i<=4;i++){
+    let el=document.getElementById("inv"+i);
+    if(!el) continue;
+    let num=parseInt(el.innerText.match(/\d+/)[0]);
+    if(num>3){el.innerText="Only "+(num-1)+" left";}
+  }
 },15000);
 
-/* STICKY */
+/* STICKY CTA */
 window.addEventListener("scroll",()=>{
-if(window.scrollY>400){
-document.getElementById("sticky").style.display="block";
-}
+  if(window.scrollY>400){
+    document.getElementById("sticky").style.display="block";
+  }
 });
 </script>
 
