@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorthSky | Official Store</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,Arial;
+  background:#0b1220;
+  color:#fff;
+}
+.container{max-width:520px;margin:0 auto;}
+
+header{
+  text-align:center;
+  padding:16px;
+  background:#0f172a;
+  border-bottom:1px solid #1f2937;
+}
+
+.sale{
+  background:#22c55e;
+  padding:10px;
+  text-align:center;
+  font-weight:600;
+  font-size:13px;
+}
+
+.hero{
+  padding:20px;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:26px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:#9ca3af;
+  font-size:14px;
+}
+
+button{
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  border:none;
+  padding:14px;
+  width:100%;
+  border-radius:12px;
+  font-weight:bold;
+  margin-top:10px;
+  font-size:15px;
+  cursor:pointer;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  padding:15px;
+}
+
+.product{
+  background:#111827;
+  border-radius:12px;
+  padding:10px;
+}
+
+.product img{
+  width:100%;
+  height:140px;
+  object-fit:cover;
+  border-radius:8px;
+  margin-bottom:8px;
+}
+
+.product h4{
+  font-size:14px;
+}
+
+.price{
+  font-weight:bold;
+  margin:4px 0;
+}
+
+.badge{
+  background:#22c55e;
+  font-size:10px;
+  padding:3px 6px;
+  border-radius:6px;
+  display:inline-block;
+  margin-bottom:5px;
+}
+
+.proof{
+  padding:15px;
+  font-size:14px;
+  color:#d1d5db;
+}
+
+.review{
+  background:#111827;
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:10px;
+}
+
+.sticky{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  max-width:520px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#000;
+  padding:10px;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+<h2>NORTHSKY</h2>
+<p style="font-size:12px;color:#aaa;">AERIAL SYSTEMS</p>
+</header>
+
+<div class="sale">🔥 FREE SHIPPING • LIMITED STOCK</div>
+
+<section class="hero">
+<h1>Professional 4K Drones — Without The $2000 Price Tag</h1>
+<p>Choose your model below 👇</p>
+<p style="font-size:12px;color:#9ca3af;margin-top:6px;">
+Trusted by 3,000+ customers worldwide
+</p>
+</section>
+
+<!-- HERO IMAGE -->
+<div style="padding:15px;">
+  <img 
+  src="https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg"
+  style="width:100%;border-radius:12px;"
+  loading="eager"
+  decoding="async"
+  onerror="this.src='https://picsum.photos/800/600?hero'">
+</div>
+
+<!-- PRODUCTS -->
+<section class="products">
+
+<div class="product">
+<span class="badge">🔥 Popular</span>
+<img 
+src="https://images.pexels.com/photos/336232/pexels-photo-336232.jpeg"
+loading="eager"
+decoding="async"
+onerror="this.src='https://picsum.photos/800/600?1'">
+<h4>NorthSky Lite</h4>
+<div class="price">$599</div>
+<button onclick="go('lite')">Buy Now</button>
+</div>
+
+<div class="product">
+<span class="badge">🔥 Best Seller</span>
+<img 
+src="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg"
+loading="lazy"
+decoding="async"
+onerror="this.src='https://picsum.photos/800/600?2'">
+<h4>NorthSky Max</h4>
+<div class="price">$1099</div>
+<button onclick="go('max')">Buy Now</button>
+</div>
+
+<div class="product">
+<img 
+src="https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg"
+loading="lazy"
+decoding="async"
+onerror="this.src='https://picsum.photos/800/600?3'">
+<h4>NorthSky X</h4>
+<div class="price">$1299</div>
+<button onclick="go('x')">Buy Now</button>
+</div>
+
+<div class="product">
+<span class="badge">🔥 Budget Kit</span>
+<img 
+src="https://images.pexels.com/photos/163792/quadrocopter-drone-aircraft-camera-163792.jpeg"
+loading="lazy"
+decoding="async"
+onerror="this.src='https://picsum.photos/800/600?4'">
+<h4>Skymaster X1 Pro Kit</h4>
+<div class="price">$199</div>
+<button onclick="go('kit')">Buy Now</button>
+</div>
+
+<div class="product">
+<img 
+src="https://images.pexels.com/photos/1601217/pexels-photo-1601217.jpeg"
+loading="lazy"
+decoding="async"
+onerror="this.src='https://picsum.photos/800/600?5'">
+<h4>Aeroflyer 3000</h4>
+<div class="price">$699</div>
+<button onclick="go('aero')">Buy Now</button>
+</div>
+
+<div class="product">
+<img 
+src="https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg"
+loading="lazy"
+decoding="async"
+onerror="this.src='https://picsum.photos/800/600?6'">
+<h4>Sky Master X1</h4>
+<div class="price">$899</div>
+<button onclick="go('master')">Buy Now</button>
+</div>
+
+</section>
+
+<!-- TRUST -->
+<section class="proof">
+<h3>⭐ Why People Choose NorthSky</h3>
+<p>✔ High-quality 4K footage</p>
+<p>✔ Beginner-friendly controls</p>
+<p>✔ Fast shipping</p>
+<p>✔ 30-day guarantee</p>
+</section>
+
+<section class="proof">
+<h3>⭐ Customer Reviews</h3>
+<div class="review">"Did NOT expect this quality at this price."</div>
+<div class="review">"Super easy to fly."</div>
+<div class="review">"Way better than expected."</div>
+</section>
+
+</div>
+
+<div class="sticky" id="sticky">
+<button onclick="go('master')">🔥 Buy Now</button>
+</div>
+
+<script>
+const links={
+lite:"https://buy.stripe.com/dRm5kw4qDbOYa7Z3YY2ZO0h",
+max:"https://buy.stripe.com/4gMdR2bT52eoa7Z9ji2ZO0g",
+x:"https://buy.stripe.com/00w9AM7CP6uE93Vanm2ZO0f",
+kit:"https://buy.stripe.com/28E00caP15qA7ZRfHG2ZO0b",
+aero:"https://buy.stripe.com/bJe9AM3mzdX6gwn2UU2ZO0c",
+master:"https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i"
+};
+
+function go(p){
+window.location.href=links[p];
+}
+
+window.addEventListener("scroll",()=>{
+if(window.scrollY>200){
+document.getElementById("sticky").style.display="block";
+}
+});
+</script>
+
+</body>
+</html>
