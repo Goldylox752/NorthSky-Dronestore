@@ -93,6 +93,13 @@ header p{font-size:12px;color:#9ca3af;}
   margin:8px 0;
 }
 
+.specs{
+  font-size:12px;
+  color:#9ca3af;
+  margin-top:8px;
+  line-height:1.5;
+}
+
 button{
   background:#22c55e;
   border:none;
@@ -126,6 +133,7 @@ button{
   object-fit:cover;
   border-radius:8px;
   margin-bottom:8px;
+  background:#020617;
 }
 
 .product h4{font-size:14px;}
@@ -151,13 +159,6 @@ button{
   border-radius:10px;
   margin-bottom:10px;
   font-size:13px;
-}
-
-/* FAQ */
-.faq div{
-  margin-bottom:10px;
-  font-size:13px;
-  color:#9ca3af;
 }
 
 /* STICKY */
@@ -187,35 +188,37 @@ button{
 
 <!-- 🎥 HERO VIDEO -->
 <div class="hero-video">
-<video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1200&q=80">
+<video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1200&q=80">
 <source src="https://cdn.coverr.co/videos/coverr-drone-flying-over-mountains-5176/1080p.mp4" type="video/mp4">
 </video>
 </div>
 
 <section class="hero">
-<h1>Professional Drone Footage — Made Simple</h1>
-<p>Capture cinematic 4K video, even if you’ve never flown before.</p>
-<p class="local">🇨🇦 Based in Leduc, Alberta • Fast Canadian Shipping</p>
+<h1>Capture Cinematic Drone Footage — Without the Learning Curve</h1>
+<p>Simple, reliable drones built for beginners and creators.</p>
+<p class="local">🇨🇦 Based in Leduc, Alberta • Ships Across Canada</p>
 </section>
 
 <div class="trust">
 <span>🔒 Secure Checkout</span>
 <span>🚚 Fast Delivery</span>
-<span>💬 Support Available</span>
+<span>📦 30-Day Guarantee</span>
 </div>
 
+<!-- FEATURE PRODUCT -->
 <div class="box">
 <h2>NorthSky Max</h2>
 <p style="text-decoration:line-through;color:#9ca3af;font-size:12px;">$1999</p>
 <div class="price">$1099</div>
-<p style="font-size:12px;color:#f87171;">Limited stock available</p>
 
-<button onclick="go('max')">Buy Now</button>
-<p style="font-size:11px;color:#9ca3af;margin-top:6px;">
-30-day guarantee • Secure checkout
-</p>
+<div class="specs">
+4K Camera • 25min Flight • GPS Return • 3km Range
 </div>
 
+<button onclick="go('max')">Buy Now</button>
+</div>
+
+<!-- PRODUCTS -->
 <section class="products">
 
 <div class="product">
@@ -223,76 +226,55 @@ button{
 <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1200&q=80">
 <h4>NorthSky Starter</h4>
 <div class="price">$599</div>
+<div class="specs">4K • 20min • Beginner Friendly</div>
 <button onclick="go('lite')">Buy</button>
 </div>
 
 <div class="product">
-<span class="badge">Premium</span>
-<img src="https://images.unsplash.com/photo-1508898578281-774ac4893a2c?auto=format&fit=crop&w=1200&q=80">
+<span class="badge">Pro</span>
+<img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1200&q=80">
 <h4>NorthSky Pro 4K</h4>
 <div class="price">$1299</div>
+<div class="specs">4K HDR • 28min • Long Range</div>
 <button onclick="go('x')">Buy</button>
 </div>
 
 <div class="product">
-<img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1200&q=80">
-<h4>NorthSky Travel Kit</h4>
+<img src="https://images.unsplash.com/photo-1508898578281-774ac4893a2c?auto=format&fit=crop&w=1200&q=80">
+<h4>Travel Kit</h4>
 <div class="price">$899</div>
+<div class="specs">Portable • Travel Ready • Easy Setup</div>
 <button onclick="go('aero')">Buy</button>
 </div>
 
 <div class="product">
-<img src="https://images.unsplash.com/photo-1527979809431-8454169f0c3c?auto=format&fit=crop&w=1200&q=80">
-<h4>NorthSky Explorer</h4>
+<img src="https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&w=1200&q=80">
+<h4>Explorer</h4>
 <div class="price">$899</div>
+<div class="specs">Stable Flight • Outdoor Ready</div>
 <button onclick="go('master')">Buy</button>
 </div>
 
 </section>
 
-<!-- 🎥 SEE IT IN ACTION -->
+<!-- REAL VISUAL PROOF -->
 <section class="section">
-<h3>See It In Action</h3>
+<h3>Real Footage</h3>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&w=1200&q=80">
-<p style="margin-top:8px;color:#9ca3af;">
-Real aerial footage captured with beginner-friendly drones.
-</p>
+<video controls style="width:100%;border-radius:10px;">
+<source src="https://cdn.coverr.co/videos/coverr-aerial-view-of-a-river-1574/1080p.mp4" type="video/mp4">
+</video>
 </div>
-
-</section>
-
-<!-- 📸 SHOT ON -->
-<section class="section">
-<h3>Shot on NorthSky</h3>
-
-<div class="card">📍 Alberta landscapes</div>
-<div class="card">🏙️ City aerial views</div>
-<div class="card">🌄 Travel content</div>
 
 </section>
 
 <section class="section">
 <h3>Why Choose NorthSky</h3>
-<div>✔ Designed for beginners and travelers</div>
-<div>✔ Smooth stabilized 4K footage</div>
-<div>✔ Reliable performance in Canadian conditions</div>
-<div>✔ Fast shipping from Canada</div>
-</section>
-
-<section class="section">
-<h3>Customer Reviews</h3>
-<div class="card">“Super easy to use. First drone.”</div>
-<div class="card">“Fast delivery in Alberta.”</div>
-<div class="card">“Great for travel content.”</div>
-</section>
-
-<section class="section faq">
-<h3>FAQ</h3>
-<div><strong>Shipping time?</strong><br>2–5 business days in Canada.</div>
-<div><strong>Beginner friendly?</strong><br>Yes — very easy to fly.</div>
-<div><strong>Returns?</strong><br>30-day guarantee.</div>
+<div>✔ Beginner-friendly controls</div>
+<div>✔ Stable cinematic footage</div>
+<div>✔ Designed for Canadian conditions</div>
+<div>✔ Fast local shipping</div>
 </section>
 
 </div>
