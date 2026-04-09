@@ -3,10 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NorthSky | Official Store</title>
+<title>NorthSky | Canadian Drone Store</title>
 
-<!-- ✅ PERFORMANCE BOOST -->
-<link rel="preconnect" href="https://images.pexels.com">
 <link rel="preconnect" href="https://images.unsplash.com">
 
 <style>
@@ -22,12 +20,13 @@ body{
 
 header{
   text-align:center;
-  padding:16px;
+  padding:18px;
   background:#0f172a;
   border-bottom:1px solid #1f2937;
 }
+header p{font-size:12px;color:#9ca3af;}
 
-.sale{
+.banner{
   background:#22c55e;
   padding:10px;
   text-align:center;
@@ -35,25 +34,16 @@ header{
   font-size:13px;
 }
 
-.urgency{
-  text-align:center;
-  font-size:12px;
-  padding:6px;
-  color:#facc15;
-}
-
 /* HERO IMAGE */
 .hero-img{
   margin:15px;
   border-radius:16px;
   overflow:hidden;
-  background:#020617; /* ✅ prevents blank flash */
 }
 .hero-img img{
   width:100%;
-  height:220px;
+  height:240px;
   object-fit:cover;
-  display:block;
 }
 
 /* HERO */
@@ -63,8 +53,7 @@ header{
 }
 
 .hero h1{
-  font-size:28px;
-  line-height:1.3;
+  font-size:26px;
   margin-bottom:10px;
 }
 
@@ -73,35 +62,35 @@ header{
   font-size:14px;
 }
 
-.hook{
-  margin-top:10px;
-  font-size:13px;
-  color:#facc15;
-}
-
 .local{
+  margin-top:8px;
   font-size:12px;
   color:#22c55e;
-  margin-top:6px;
 }
 
-/* TRUST BAR */
-.trust-bar{
+/* TRUST */
+.trust{
   display:flex;
   justify-content:space-around;
   font-size:11px;
-  padding:10px;
+  padding:12px;
   color:#9ca3af;
 }
 
-/* HERO BOX */
-.hero-box{
+/* FEATURE BOX */
+.box{
   margin:15px;
   background:#111827;
   border-radius:16px;
   padding:20px;
   text-align:center;
   border:1px solid #1f2937;
+}
+
+.price{
+  font-size:22px;
+  font-weight:bold;
+  margin:8px 0;
 }
 
 button{
@@ -114,11 +103,9 @@ button{
   margin-top:10px;
   font-size:15px;
   cursor:pointer;
-  transition:0.2s;
 }
 
-button:hover{opacity:0.9;}
-
+/* PRODUCTS */
 .products{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -142,36 +129,44 @@ button:hover{opacity:0.9;}
 }
 
 .product h4{font-size:14px;}
-.price{font-weight:bold;margin:4px 0;}
-
 .badge{
   background:#22c55e;
   font-size:10px;
   padding:3px 6px;
   border-radius:6px;
-  display:inline-block;
-  margin-bottom:5px;
-}
-
-.stock{
-  font-size:12px;
-  color:#f87171;
 }
 
 /* WHY */
-.why{
+.section{
   padding:15px;
+}
+
+.section h3{
+  margin-bottom:10px;
+}
+
+.section div{
+  margin-bottom:8px;
   font-size:14px;
 }
-.why div{margin-bottom:8px;}
 
+/* REVIEWS */
 .review{
   background:#111827;
   padding:12px;
   border-radius:10px;
   margin-bottom:10px;
+  font-size:13px;
 }
 
+/* FAQ */
+.faq div{
+  margin-bottom:10px;
+  font-size:13px;
+  color:#9ca3af;
+}
+
+/* STICKY */
 .sticky{
   position:fixed;
   bottom:0;
@@ -181,7 +176,6 @@ button:hover{opacity:0.9;}
   transform:translateX(-50%);
   background:#000;
   padding:10px;
-  display:block; /* ✅ always visible now */
 }
 </style>
 </head>
@@ -192,84 +186,60 @@ button:hover{opacity:0.9;}
 
 <header>
 <h2>NORTHSKY</h2>
-<p style="font-size:12px;color:#aaa;">AERIAL SYSTEMS</p>
+<p>Canadian Drone Store • Alberta Based</p>
 </header>
 
-<div class="sale">🔥 FREE SHIPPING • LIMITED STOCK</div>
-<div class="urgency">⚡ Selling fast — limited units available</div>
+<div class="banner">🚚 Free Shipping Across Canada</div>
 
-<!-- ✅ PERFECT HERO IMAGE (TRIPLE FAILSAFE) -->
+<!-- REAL DRONE IMAGE -->
 <div class="hero-img">
-<img 
-src="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=1200"
-onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&w=1200&q=80';"
-loading="eager"
-decoding="async"
-fetchpriority="high"
->
+<img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1200&q=80">
 </div>
 
 <section class="hero">
-<h1>Film Cinematic Drone Shots — Even If You’ve Never Flown Before</h1>
-
-<p class="hook">
-🚁 Smooth, stabilized 4K footage in minutes — no experience needed
-</p>
-
-<p style="margin-top:8px;">
-✔ 3,000+ Customers • 4.8★ Rating • 30-Day Guarantee
-</p>
-
-<p class="local">🇨🇦 Ships from Canada • 2–5 Day Delivery</p>
+<h1>Professional Drone Footage — Made Simple</h1>
+<p>Capture cinematic 4K video, even if you’ve never flown before.</p>
+<p class="local">🇨🇦 Based in Alberta • Fast Canadian Shipping</p>
 </section>
 
-<div class="trust-bar">
+<div class="trust">
 <span>🔒 Secure Checkout</span>
-<span>🚚 Fast Shipping</span>
-<span>💬 24/7 Support</span>
+<span>🚚 Fast Delivery</span>
+<span>💬 Support Available</span>
 </div>
 
-<div class="hero-box">
+<div class="box">
 <h2>NorthSky Max</h2>
-
-<!-- ✅ PRICE ANCHOR -->
-<p style="font-size:12px;color:#9ca3af;text-decoration:line-through;">
-$1999 retail
-</p>
-
+<p style="text-decoration:line-through;color:#9ca3af;font-size:12px;">$1999</p>
 <div class="price">$1099</div>
-<p class="stock">⚠️ Only 7 left in stock</p>
+<p style="font-size:12px;color:#f87171;">Limited stock available</p>
 
-<button onclick="go('max')">🔥 Get Yours Now</button>
-
-<!-- ✅ TRUST UNDER CTA -->
+<button onclick="go('max')">Buy Now</button>
 <p style="font-size:11px;color:#9ca3af;margin-top:6px;">
-🔒 Secure checkout • 30-day money-back guarantee
+30-day guarantee • Secure checkout
 </p>
 </div>
 
 <section class="products">
 
 <div class="product">
-<span class="badge">🔥 Popular</span>
-<img src="https://images.unsplash.com/photo-1508898578281-774ac4893a2c?auto=format&fit=crop&w=600&q=80">
+<span class="badge">Popular</span>
+<img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=600&q=80">
 <h4>NorthSky Lite</h4>
 <div class="price">$599</div>
-<p class="stock">⚠️ Only 12 left</p>
 <button onclick="go('lite')">Buy</button>
 </div>
 
 <div class="product">
-<span class="badge">🔥 Premium</span>
-<img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=600&q=80">
+<span class="badge">Premium</span>
+<img src="https://images.unsplash.com/photo-1508898578281-774ac4893a2c?auto=format&fit=crop&w=600&q=80">
 <h4>NorthSky X</h4>
 <div class="price">$1299</div>
-<p class="stock">⚠️ Only 5 left</p>
 <button onclick="go('x')">Buy</button>
 </div>
 
 <div class="product">
-<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80">
+<img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80">
 <h4>Aeroflyer 3000</h4>
 <div class="price">$699</div>
 <button onclick="go('aero')">Buy</button>
@@ -284,25 +254,32 @@ $1999 retail
 
 </section>
 
-<section class="why">
-<h3>🔥 Why NorthSky?</h3>
-<div>✔ Same performance as $2000 drones</div>
-<div>✔ Beginner-friendly controls</div>
-<div>✔ Ultra stable 4K footage</div>
-<div>✔ Trusted by 3,000+ customers</div>
+<section class="section">
+<h3>Why Choose NorthSky</h3>
+<div>✔ Designed for beginners and travelers</div>
+<div>✔ Smooth stabilized 4K footage</div>
+<div>✔ Reliable performance in Canadian conditions</div>
+<div>✔ Fast shipping from Canada</div>
 </section>
 
-<section class="proof">
-<h3>⭐ Customer Reviews</h3>
-<div class="review">"Thought it was fake… it's actually insane."</div>
-<div class="review">"Shoots like a $2K drone."</div>
-<div class="review">"Super easy to fly."</div>
+<section class="section">
+<h3>Customer Reviews</h3>
+<div class="review">“Didn’t expect much — honestly impressed.”</div>
+<div class="review">“Perfect starter drone. Easy to fly.”</div>
+<div class="review">“Fast shipping in Alberta. Works great.”</div>
+</section>
+
+<section class="section faq">
+<h3>FAQ</h3>
+<div><strong>How long is shipping?</strong><br>2–5 business days in Canada.</div>
+<div><strong>Is it beginner friendly?</strong><br>Yes — designed for first-time users.</div>
+<div><strong>Do you offer refunds?</strong><br>30-day money-back guarantee.</div>
 </section>
 
 </div>
 
 <div class="sticky">
-<button onclick="go('max')">🔥 Get Yours Now</button>
+<button onclick="go('max')">🚀 Get Your Drone</button>
 </div>
 
 <script>
