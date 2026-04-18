@@ -1,74 +1,4 @@
 <script>
-function goToCheckout(){
-  const session_id = localStorage.getItem("session_id") || "unknown";
-  const source = document.referrer || "direct";
-
-  const url = new URL("https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i");
-
-  url.searchParams.append("client_reference_id", session_id);
-
-  window.location.href = url.toString();
-}
-</script>
-
-
-import Stripe from "stripe";
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
-export default async function handler(req, res) {
-  const sig = req.headers["stripe-signature"];
-
-  let event;
-
-  try {
-    event = stripe.webhooks.constructEvent(
-      req.body,
-      sig,
-      process.env.STRIPE_WEBHOOK_SECRET
-    );
-  } catch (err) {
-    console.log("❌ Webhook signature failed");
-    return res.status(400).send(`Webhook Error: ${err.message}`);
-  }
-
-  // ✅ PAYMENT SUCCESS
-  if (event.type === "checkout.session.completed") {
-    const session = event.data.object;
-
-    const email = session.customer_details?.email;
-    const amount = session.amount_total / 100;
-
-    // metadata you’ll pass from frontend
-    const session_id = session.metadata?.session_id || null;
-    const source = session.metadata?.source || "unknown";
-
-    // 🔥 SEND TO SUPABASE
-    await fetch(`${process.env.SUPABASE_URL}/rest/v1/purchases`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "apikey": process.env.SUPABASE_SERVICE_KEY,
-        "Authorization": `Bearer ${process.env.SUPABASE_SERVICE_KEY}`
-      },
-      body: JSON.stringify({
-        email,
-        amount,
-        session_id,
-        source,
-        created_at: new Date().toISOString()
-      })
-    });
-
-    console.log("💰 Purchase tracked:", email, amount);
-  }
-
-  res.status(200).json({ received: true });
-}
-
-
-
-<script>
 /* ================= CONFIG ================= */
 const SUPABASE_URL = "https://YOUR_PROJECT.supabase.co";
 const SUPABASE_KEY = "YOUR_PUBLIC_ANON_KEY";
@@ -80,11 +10,8 @@ function initSupabase(){
   try {
     if (window.supabase && SUPABASE_URL && SUPABASE_KEY) {
       supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-      console.log("✅ Supabase connected");
     }
-  } catch (e) {
-    console.log("❌ Supabase init failed");
-  }
+  } catch (e) {}
 }
 
 initSupabase();
@@ -101,100 +28,115 @@ function getSessionId(){
 
 const SESSION_ID = getSessionId();
 
-/* ================= TRACKING ================= */
+/* ================= URL DATA ================= */
+function getUTMs(){
+  const p = new URLSearchParams(window.location.search);
+  return {
+    utm_source: p.get("utm_source") || null,
+    utm_campaign: p.get("utm_campaign") || null,
+    utm_content: p.get("utm_content") || null
+  };
+}
+
+function getCost(){
+  const p = new URLSearchParams(window.location.search);
+  return parseFloat(p.get("cpc")) || 0;
+}
+
+/* ================= TRACKING CORE ================= */
 async function track(event, meta = {}) {
+
   const payload = {
     event,
     meta: {
       ...meta,
+      ...getUTMs(),
+      cost: getCost(),
       url: window.location.href,
-      path: window.location.pathname,
-      referrer: document.referrer || null,
       session_id: SESSION_ID,
+      referrer: document.referrer || "direct",
       user_agent: navigator.userAgent
     },
     time: new Date().toISOString()
   };
 
-  console.log("📊 TRACK:", payload);
-
   if (!supabase) return;
 
   try {
     await supabase.from("events").insert([payload]);
-  } catch (e) {
-    console.log("❌ Track error");
-  }
+  } catch (e) {}
 }
 
-/* ================= HELPERS ================= */
-function $(id){
-  return document.getElementById(id);
-}
-
-/* ================= SOURCE DETECTION ================= */
+/* ================= TRAFFIC SOURCE (SIMPLIFIED) ================= */
 function getTrafficSource(){
   const ref = document.referrer;
-
   if (!ref) return "direct";
-
-  if (ref.includes("goldylox752.github.io")) return "roofflow"; // YOUR SITE
-  if (ref.includes("google")) return "google";
   if (ref.includes("facebook")) return "facebook";
+  if (ref.includes("google")) return "google";
   if (ref.includes("tiktok")) return "tiktok";
-
+  if (ref.includes("RoofFlow")) return "roofflow";
   return "other";
 }
 
+/* ================= CHECKOUT (ONLY ONE VERSION) ================= */
+function goToCheckout(){
+
+  const utms = getUTMs();
+
+  const url = new URL("https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i");
+
+  url.searchParams.append("client_reference_id", SESSION_ID);
+  url.searchParams.append("utm_source", utms.utm_source || "");
+  url.searchParams.append("utm_campaign", utms.utm_campaign || "");
+  url.searchParams.append("utm_content", utms.utm_content || "");
+  url.searchParams.append("cpc", getCost());
+
+  track("checkout_click", { source: getTrafficSource() });
+
+  window.location.href = url.toString();
+}
+
 /* ================= CTA TRACKING ================= */
-function trackCTAClicks(){
-  document.querySelectorAll("a").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      const href = btn.getAttribute("href") || "";
+function bindCTAs(){
+  document.querySelectorAll("a").forEach(a=>{
+    a.addEventListener("click", ()=>{
+      const href = a.getAttribute("href") || "";
 
-      if (href.includes("stripe.com")){
-        track("cta_click", {
-          type: "purchase",
-          text: btn.innerText,
-          source: getTrafficSource()
-        });
+      if (href.includes("stripe")){
+        track("cta_purchase_click", { source: getTrafficSource() });
       }
 
-      if (href.includes("northsky-drones")){
-        track("view_drone", {
-          source: getTrafficSource()
-        });
+      if (href.includes("RoofFlow")){
+        track("view_roofflow", { source: getTrafficSource() });
       }
 
-      if (href.includes("RoofFlow-AI")){
-        track("view_roofflow", {
-          source: getTrafficSource()
-        });
+      if (href.includes("northsky")){
+        track("view_drone", { source: getTrafficSource() });
       }
     });
   });
 }
 
-/* ================= SCROLL TRACKING ================= */
-function trackScrollDepth(){
-  let triggered = false;
+/* ================= SCROLL ================= */
+function trackScroll(){
+  let fired = false;
 
   window.addEventListener("scroll", ()=>{
-    const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    const p = window.scrollY / (document.body.scrollHeight - window.innerHeight);
 
-    if (scrollPercent > 60 && !triggered){
-      triggered = true;
+    if (p > 0.6 && !fired){
+      fired = true;
       track("scroll_60");
     }
   });
 }
 
-/* ================= EMAIL POPUP ================= */
+/* ================= POPUP ================= */
 function showPopup(){
   if (localStorage.getItem("emailCaptured")) return;
 
   setTimeout(()=>{
-    const popup = $("popup");
+    const popup = document.getElementById("popup");
     if (popup){
       popup.style.display = "block";
       track("popup_shown");
@@ -202,18 +144,12 @@ function showPopup(){
   }, 3000);
 }
 
-function closePopup(){
-  const popup = $("popup");
-  if (popup) popup.style.display = "none";
-}
-
-/* ================= EMAIL SUBMIT ================= */
+/* ================= EMAIL ================= */
 async function submitEmail(){
-  const input = $("emailInput");
-  const email = input ? input.value.trim() : "";
+  const email = document.getElementById("emailInput")?.value?.trim();
 
-  if (!email.includes("@")){
-    alert("Enter a valid email");
+  if (!email || !email.includes("@")){
+    alert("Enter valid email");
     return;
   }
 
@@ -221,33 +157,24 @@ async function submitEmail(){
 
   await track("email_capture", { email });
 
-  try {
-    if (supabase) {
-      await supabase.from("leads").insert([
-        {
-          email,
-          session_id: SESSION_ID,
-          source: getTrafficSource(),
-          created_at: new Date().toISOString()
-        }
-      ]);
-    }
-  } catch (e) {
-    console.log("❌ Lead save error");
+  if (supabase){
+    await supabase.from("leads").insert([{
+      email,
+      session_id: SESSION_ID,
+      source: getTrafficSource(),
+      created_at: new Date().toISOString()
+    }]);
   }
 
-  alert("✅ $50 discount unlocked!");
-  closePopup();
+  alert("Discount unlocked!");
+  document.getElementById("popup").style.display = "none";
 }
 
-/* ================= PAGE INIT ================= */
-window.addEventListener("load", () => {
-  track("page_view", {
-    source: getTrafficSource()
-  });
-
-  trackCTAClicks();
-  trackScrollDepth();
+/* ================= INIT ================= */
+window.addEventListener("load", ()=>{
+  track("page_view", { source: getTrafficSource() });
+  bindCTAs();
+  trackScroll();
   showPopup();
 });
 </script>
