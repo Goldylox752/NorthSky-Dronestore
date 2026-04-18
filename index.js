@@ -7,11 +7,9 @@ const SUPABASE_KEY = "YOUR_PUBLIC_ANON_KEY";
 let supabase = null;
 
 function initSupabase(){
-  try {
-    if (window.supabase && SUPABASE_URL && SUPABASE_KEY) {
-      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    }
-  } catch (e) {}
+  if (window.supabase && SUPABASE_URL && SUPABASE_KEY) {
+    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  }
 }
 
 initSupabase();
@@ -32,28 +30,23 @@ const SESSION_ID = getSessionId();
 function getUTMs(){
   const p = new URLSearchParams(window.location.search);
   return {
-    utm_source: p.get("utm_source") || null,
+    utm_source: p.get("utm_source") || "direct",
     utm_campaign: p.get("utm_campaign") || null,
-    utm_content: p.get("utm_content") || null
+    utm_content: p.get("utm_content") || null,
+    cpc: parseFloat(p.get("cpc")) || 0
   };
 }
 
-function getCost(){
-  const p = new URLSearchParams(window.location.search);
-  return parseFloat(p.get("cpc")) || 0;
-}
-
-/* ================= TRACKING CORE ================= */
+/* ================= CORE TRACKING ================= */
 async function track(event, meta = {}) {
 
-  const payload = {
+  const data = {
     event,
     meta: {
       ...meta,
       ...getUTMs(),
-      cost: getCost(),
-      url: window.location.href,
       session_id: SESSION_ID,
+      url: location.href,
       referrer: document.referrer || "direct",
       user_agent: navigator.userAgent
     },
@@ -63,90 +56,97 @@ async function track(event, meta = {}) {
   if (!supabase) return;
 
   try {
-    await supabase.from("events").insert([payload]);
-  } catch (e) {}
+    await supabase.from("events").insert([data]);
+  } catch (e) {
+    console.log("track error:", e.message);
+  }
 }
 
-/* ================= TRAFFIC SOURCE (SIMPLIFIED) ================= */
-function getTrafficSource(){
-  const ref = document.referrer;
-  if (!ref) return "direct";
-  if (ref.includes("facebook")) return "facebook";
-  if (ref.includes("google")) return "google";
-  if (ref.includes("tiktok")) return "tiktok";
-  if (ref.includes("RoofFlow")) return "roofflow";
-  return "other";
-}
-
-/* ================= CHECKOUT (ONLY ONE VERSION) ================= */
+/* ================= CHECKOUT ================= */
 function goToCheckout(){
 
-  const utms = getUTMs();
+  const utm = getUTMs();
 
   const url = new URL("https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i");
 
-  url.searchParams.append("client_reference_id", SESSION_ID);
-  url.searchParams.append("utm_source", utms.utm_source || "");
-  url.searchParams.append("utm_campaign", utms.utm_campaign || "");
-  url.searchParams.append("utm_content", utms.utm_content || "");
-  url.searchParams.append("cpc", getCost());
+  url.searchParams.set("client_reference_id", SESSION_ID);
+  url.searchParams.set("utm_source", utm.utm_source);
+  url.searchParams.set("utm_campaign", utm.utm_campaign || "");
+  url.searchParams.set("utm_content", utm.utm_content || "");
+  url.searchParams.set("cpc", utm.cpc);
 
-  track("checkout_click", { source: getTrafficSource() });
+  track("checkout_click", {
+    source: utm.utm_source
+  });
 
   window.location.href = url.toString();
 }
 
 /* ================= CTA TRACKING ================= */
 function bindCTAs(){
-  document.querySelectorAll("a").forEach(a=>{
-    a.addEventListener("click", ()=>{
-      const href = a.getAttribute("href") || "";
+
+  document.querySelectorAll("a").forEach(el => {
+
+    el.addEventListener("click", () => {
+
+      const href = el.href || "";
 
       if (href.includes("stripe")){
-        track("cta_purchase_click", { source: getTrafficSource() });
+        track("cta_click", { type: "purchase" });
       }
 
       if (href.includes("RoofFlow")){
-        track("view_roofflow", { source: getTrafficSource() });
+        track("view_roofflow", { source: getUTMs().utm_source });
       }
 
       if (href.includes("northsky")){
-        track("view_drone", { source: getTrafficSource() });
+        track("view_drone");
       }
     });
+
   });
 }
 
-/* ================= SCROLL ================= */
+/* ================= SCROLL DEPTH ================= */
 function trackScroll(){
-  let fired = false;
 
-  window.addEventListener("scroll", ()=>{
-    const p = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  let done = false;
 
-    if (p > 0.6 && !fired){
-      fired = true;
+  window.addEventListener("scroll", () => {
+
+    const percent =
+      window.scrollY /
+      (document.body.scrollHeight - window.innerHeight);
+
+    if (percent > 0.6 && !done){
+      done = true;
       track("scroll_60");
     }
+
   });
+
 }
 
 /* ================= POPUP ================= */
 function showPopup(){
+
   if (localStorage.getItem("emailCaptured")) return;
 
-  setTimeout(()=>{
+  setTimeout(() => {
     const popup = document.getElementById("popup");
     if (popup){
       popup.style.display = "block";
       track("popup_shown");
     }
   }, 3000);
+
 }
 
 /* ================= EMAIL ================= */
 async function submitEmail(){
-  const email = document.getElementById("emailInput")?.value?.trim();
+
+  const input = document.getElementById("emailInput");
+  const email = input?.value?.trim();
 
   if (!email || !email.includes("@")){
     alert("Enter valid email");
@@ -161,7 +161,7 @@ async function submitEmail(){
     await supabase.from("leads").insert([{
       email,
       session_id: SESSION_ID,
-      source: getTrafficSource(),
+      source: getUTMs().utm_source,
       created_at: new Date().toISOString()
     }]);
   }
@@ -171,10 +171,15 @@ async function submitEmail(){
 }
 
 /* ================= INIT ================= */
-window.addEventListener("load", ()=>{
-  track("page_view", { source: getTrafficSource() });
+window.addEventListener("load", () => {
+
+  track("page_view", {
+    source: getUTMs().utm_source
+  });
+
   bindCTAs();
   trackScroll();
   showPopup();
+
 });
 </script>
