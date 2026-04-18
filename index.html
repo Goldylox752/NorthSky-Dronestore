@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NorthSky | Skymaster X1</title>
+
+<style>
+:root{
+  --bg:#020617;
+  --card:rgba(255,255,255,0.04);
+  --border:rgba(255,255,255,0.08);
+  --text:#ffffff;
+  --muted:rgba(255,255,255,0.65);
+  --accent:#38bdf8;
+  --cta:#22c55e;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Inter",Arial;
+  background:var(--bg);
+  color:var(--text);
+}
+
+.container{
+  max-width:520px;
+  margin:auto;
+  padding:20px;
+}
+
+.hero{text-align:center;}
+.hero h1{font-size:30px;}
+.hero p{color:var(--muted);margin-top:6px;}
+
+.video iframe{
+  width:100%;
+  height:260px;
+  border-radius:16px;
+  margin-top:14px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:16px;
+  margin-top:16px;
+}
+
+.price{
+  font-size:30px;
+  font-weight:700;
+  color:var(--cta);
+}
+
+.old{
+  text-decoration:line-through;
+  color:var(--muted);
+}
+
+.btn{
+  display:block;
+  width:100%;
+  margin-top:12px;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  font-weight:700;
+  text-align:center;
+  background:var(--cta);
+  color:black;
+  text-decoration:none;
+}
+
+.badges{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:10px;
+}
+
+.badge{
+  font-size:11px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid var(--border);
+  color:var(--muted);
+}
+
+.sticky{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  max-width:520px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#000;
+  padding:10px;
+}
+
+.popup{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  width:90%;
+  max-width:340px;
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:16px;
+  border-radius:14px;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Inspect Roofs in Minutes — Not Hours</h1>
+  <p>GPS-Stabilized Drone Built for Contractors & First-Time Pilots</p>
+  <p style="color:var(--accent);font-size:13px;margin-top:6px;">
+    Used to quote jobs faster and close more deals
+  </p>
+</div>
+
+<!-- VIDEO -->
+<div class="video">
+  <iframe src="https://www.youtube.com/embed/YOUR_ROOF_VIDEO" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<!-- TRUST -->
+<div class="badges">
+  <div class="badge">🇨🇦 Ships Across Canada</div>
+  <div class="badge">🔒 Secure Checkout</div>
+  <div class="badge">📦 30-Day Guarantee</div>
+</div>
+
+<!-- PROBLEM -->
+<div class="card">
+  <h3>The Old Way Is Slowing You Down</h3>
+  <p style="margin-top:8px;">
+    Climbing ladders, wasting time on inspections, and missing details costs you money.
+  </p>
+</div>
+
+<!-- SOLUTION -->
+<div class="card">
+  <h3>Upgrade How You Work</h3>
+  <p style="margin-top:8px;">
+    The Skymaster X1 lets you inspect roofs and job sites from the air—
+    faster, safer, and more professional.
+  </p>
+</div>
+
+<!-- BENEFITS -->
+<div class="card">
+  <h3>What This Unlocks</h3>
+  <p style="margin-top:8px;">
+    ✔ Inspect in minutes<br>
+    ✔ Show clients real damage<br>
+    ✔ Close jobs faster<br>
+    ✔ Handle more leads per day
+  </p>
+</div>
+
+<!-- ROI -->
+<div class="card">
+  <h3>Pays For Itself Fast</h3>
+  <p style="margin-top:8px;">
+    Charge $150–$300 per inspection.<br><br>
+    Most contractors recover the cost in just a few jobs.
+  </p>
+</div>
+
+<!-- OFFER -->
+<div class="card">
+  <h2>Complete Inspection Kit</h2>
+
+  <p style="margin-top:8px;color:var(--muted);">
+    ✔ Skymaster X1 Drone<br>
+    ✔ 3 Batteries (60+ min flight)<br>
+    ✔ Carry Case<br>
+    ✔ Spare Props<br>
+    ✔ Quick Start Guide
+  </p>
+
+  <p style="margin-top:10px;color:var(--accent);">
+    Total Value: $999+
+  </p>
+
+  <div class="old">$1299</div>
+  <div class="price">$899</div>
+
+  <a class="btn" href="https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i" target="_blank">
+    🚀 Start Inspecting Smarter
+  </a>
+</div>
+
+<!-- FEATURES -->
+<div class="card">
+  <h3>Built For Real Work</h3>
+  <p style="margin-top:8px;">
+    ✔ GPS hover stability<br>
+    ✔ Auto return home<br>
+    ✔ Smooth 1080P footage<br>
+    ✔ Beginner-friendly controls
+  </p>
+</div>
+
+<!-- SOCIAL -->
+<div class="card">
+  <h3>What Users Say</h3>
+  <p style="margin-top:8px;">
+    ★★★★★ “Saved hours on inspections.”<br><br>
+    ★★★★★ “Way more stable than cheap drones.”<br><br>
+    ★★★★★ “Paid for itself fast.”
+  </p>
+</div>
+
+<!-- SCARCITY -->
+<div class="card">
+  <h3>⚠️ Limited Stock</h3>
+  <p style="margin-top:8px;">
+    Inventory is limited. Next restock may take weeks.
+  </p>
+</div>
+
+<!-- FINAL CTA -->
+<div class="card">
+  <a class="btn" href="https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i" target="_blank">
+    🔥 Get Your Drone Now
+  </a>
+</div>
+
+<!-- GUARANTEE -->
+<div class="card">
+  <h3>30-Day Risk-Free Guarantee</h3>
+  <p style="margin-top:8px;">
+    Try it risk-free. If it doesn’t improve your workflow, get a full refund.
+  </p>
+</div>
+
+</div>
+
+<!-- STICKY CTA -->
+<div class="sticky">
+  <a class="btn" href="https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i" target="_blank">
+    🚀 Start Inspecting Smarter
+  </a>
+</div>
+
+<!-- EMAIL POPUP -->
+<div id="popup" class="popup">
+  <h3>Get $50 OFF</h3>
+  <p style="font-size:13px;margin-top:6px;">
+    Plus a guide on closing more jobs with drone inspections
+  </p>
+  <input id="emailInput" placeholder="Email"
+    style="width:100%;padding:10px;margin-top:10px;border-radius:10px;border:none;">
+  <button onclick="submitEmail()" class="btn">Unlock</button>
+</div>
+
+<script>
+function submitEmail(){
+  const email = document.getElementById("emailInput").value;
+  if(!email.includes("@")) return alert("Enter valid email");
+
+  localStorage.setItem("emailCaptured","true");
+  document.getElementById("popup").style.display="none";
+  alert("Discount unlocked!");
+}
+
+window.onload = () => {
+  if(!localStorage.getItem("emailCaptured")){
+    setTimeout(()=>{
+      document.getElementById("popup").style.display="block";
+    },3000);
+  }
+};
+</script>
+
+</body>
+</html>
