@@ -10,31 +10,50 @@ function initSupabase(){
   try {
     if (window.supabase && SUPABASE_URL && SUPABASE_KEY) {
       supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-      console.log("Supabase connected");
+      console.log("✅ Supabase connected");
     }
   } catch (e) {
-    console.log("Supabase init failed");
+    console.log("❌ Supabase init failed");
   }
 }
 
 initSupabase();
 
+/* ================= SESSION ================= */
+function getSessionId(){
+  let id = localStorage.getItem("session_id");
+  if (!id){
+    id = crypto.randomUUID();
+    localStorage.setItem("session_id", id);
+  }
+  return id;
+}
+
+const SESSION_ID = getSessionId();
+
 /* ================= TRACKING ================= */
 async function track(event, meta = {}) {
-  console.log("TRACK:", event, meta);
+  const payload = {
+    event,
+    meta: {
+      ...meta,
+      url: window.location.href,
+      path: window.location.pathname,
+      referrer: document.referrer || null,
+      session_id: SESSION_ID,
+      user_agent: navigator.userAgent
+    },
+    time: new Date().toISOString()
+  };
+
+  console.log("📊 TRACK:", payload);
 
   if (!supabase) return;
 
   try {
-    await supabase.from("events").insert([
-      {
-        event,
-        meta,
-        time: new Date().toISOString()
-      }
-    ]);
+    await supabase.from("events").insert([payload]);
   } catch (e) {
-    console.log("Track error");
+    console.log("❌ Track error");
   }
 }
 
@@ -43,12 +62,60 @@ function $(id){
   return document.getElementById(id);
 }
 
+/* ================= SOURCE DETECTION ================= */
+function getTrafficSource(){
+  const ref = document.referrer;
+
+  if (!ref) return "direct";
+
+  if (ref.includes("goldylox752.github.io")) return "roofflow"; // YOUR SITE
+  if (ref.includes("google")) return "google";
+  if (ref.includes("facebook")) return "facebook";
+  if (ref.includes("tiktok")) return "tiktok";
+
+  return "other";
+}
+
 /* ================= CTA TRACKING ================= */
 function trackCTAClicks(){
-  document.querySelectorAll("a[href*='stripe.com']").forEach(btn=>{
+  document.querySelectorAll("a").forEach(btn=>{
     btn.addEventListener("click", ()=>{
-      track("cta_click", { location: btn.innerText });
+      const href = btn.getAttribute("href") || "";
+
+      if (href.includes("stripe.com")){
+        track("cta_click", {
+          type: "purchase",
+          text: btn.innerText,
+          source: getTrafficSource()
+        });
+      }
+
+      if (href.includes("northsky-drones")){
+        track("view_drone", {
+          source: getTrafficSource()
+        });
+      }
+
+      if (href.includes("RoofFlow-AI")){
+        track("view_roofflow", {
+          source: getTrafficSource()
+        });
+      }
     });
+  });
+}
+
+/* ================= SCROLL TRACKING ================= */
+function trackScrollDepth(){
+  let triggered = false;
+
+  window.addEventListener("scroll", ()=>{
+    const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+
+    if (scrollPercent > 60 && !triggered){
+      triggered = true;
+      track("scroll_60");
+    }
   });
 }
 
@@ -57,8 +124,11 @@ function showPopup(){
   if (localStorage.getItem("emailCaptured")) return;
 
   setTimeout(()=>{
-    const popup = $("popup"); // FIXED ID
-    if (popup) popup.style.display = "block";
+    const popup = $("popup");
+    if (popup){
+      popup.style.display = "block";
+      track("popup_shown");
+    }
   }, 3000);
 }
 
@@ -84,22 +154,30 @@ async function submitEmail(){
   try {
     if (supabase) {
       await supabase.from("leads").insert([
-        { email, created_at: new Date().toISOString() }
+        {
+          email,
+          session_id: SESSION_ID,
+          source: getTrafficSource(),
+          created_at: new Date().toISOString()
+        }
       ]);
     }
   } catch (e) {
-    console.log("Lead save error");
+    console.log("❌ Lead save error");
   }
 
-  alert("✅ Bonus unlocked!");
+  alert("✅ $50 discount unlocked!");
   closePopup();
 }
 
 /* ================= PAGE INIT ================= */
 window.addEventListener("load", () => {
-  track("page_view");
+  track("page_view", {
+    source: getTrafficSource()
+  });
 
   trackCTAClicks();
+  trackScrollDepth();
   showPopup();
 });
 </script>
