@@ -1,72 +1,49 @@
 import Stripe from "stripe";
-import { createClient } from "@supabase/supabase-js";
+import { headers } from "next/headers";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
-export const config = {
-  api: { bodyParser: false }
-};
-
-export default async function handler(req, res) {
-  const sig = req.headers["stripe-signature"];
+export async function POST(req) {
+  const body = await req.text();
+  const sig = headers().get("stripe-signature");
 
   let event;
 
   try {
-    const rawBody = await buffer(req);
-
-    event = stripe.webhooks.constructEvent(
-      rawBody,
-      sig,
-      process.env.STRIPE_WEBHOOK_SECRET
-    );
+    event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
   } catch (err) {
-    return res.status(400).send("Webhook Error");
+    console.error("❌ Webhook signature failed:", err.message);
+    return new Response(`Webhook Error: ${err.message}`, { status: 400 });
   }
 
-  // 💳 PAYMENT SUCCESS
+  // 🎯 MAIN EVENT
   if (event.type === "checkout.session.completed") {
     const session = event.data.object;
 
-    await supabase.from("subscriptions").upsert({
-      user_id: session.metadata.user_id,
-      stripe_customer_id: session.customer,
-      plan: session.metadata.plan,
-      status: "active",
-      updated_at: new Date()
-    });
+    const email = session.customer_email;
+    const metadata = session.metadata || {};
+
+    const lead = {
+      email,
+      phone: metadata.phone,
+      plan: metadata.plan,
+      lead_score: metadata.leadScore,
+      status: "paid",
+      source: "stripe_webhook",
+      created_at: new Date().toISOString(),
+    };
+
+    console.log("💰 New Paid Lead:", lead);
+
+    // 👉 HERE YOU SAVE TO DATABASE
+    // example Supabase:
+    //
+    // await supabase.from("leads").insert([lead]);
   }
 
-  // 🔄 RENEWALS
-  if (event.type === "invoice.payment_succeeded") {
-    const invoice = event.data.object;
-
-    await supabase
-      .from("subscriptions")
-      .update({ status: "active" })
-      .eq("stripe_customer_id", invoice.customer);
-  }
-
-  // ❌ CANCEL
-  if (event.type === "customer.subscription.deleted") {
-    const sub = event.data.object;
-
-    await supabase
-      .from("subscriptions")
-      .update({ status: "canceled" })
-      .eq("stripe_customer_id", sub.customer);
-  }
-
-  res.json({ received: true });
-}
-
-async function buffer(req) {
-  const chunks = [];
-  for await (const chunk of req) chunks.push(chunk);
-  return Buffer.concat(chunks);
+  return new Response(JSON.stringify({ received: true }), {
+    status: 200,
+  });
 }
