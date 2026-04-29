@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>Skymaster X1 | Roofing Inspection Drone</title>
 
@@ -11,121 +11,143 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-528699336');
+
+  gtag("js", new Date());
+  gtag("config", "G-528699336");
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 
 <style>
 body {
-  margin:0;
+  margin: 0;
   font-family: Inter, sans-serif;
-  background:#05070f;
-  color:#fff;
+  background: #05070f;
+  color: #fff;
 }
 
 .container {
-  max-width:900px;
-  margin:auto;
-  padding:20px;
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
 }
 
 .hero {
-  text-align:center;
-  padding:60px 20px;
+  text-align: center;
+  padding: 60px 20px;
 }
 
 .badge {
-  display:inline-block;
-  padding:6px 12px;
-  border-radius:999px;
-  font-size:12px;
-  background:rgba(34,197,94,0.15);
-  color:#22c55e;
-  border:1px solid #22c55e;
-  margin-bottom:15px;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: rgba(34,197,94,0.15);
+  color: #22c55e;
+  border: 1px solid #22c55e;
+  margin-bottom: 15px;
 }
 
 h1 {
-  font-size:40px;
-  font-weight:900;
-  line-height:1.1;
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1.1;
 }
 
 p {
-  opacity:0.8;
-  margin-top:10px;
+  opacity: 0.8;
+  margin-top: 10px;
 }
 
 .btn {
-  display:block;
-  width:100%;
-  padding:16px;
-  border-radius:12px;
-  font-weight:800;
-  text-align:center;
-  text-decoration:none;
-  margin-top:15px;
-  cursor:pointer;
+  display: block;
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 15px;
+  cursor: pointer;
 }
 
-.btn-primary {
-  background:#22c55e;
-  color:#000;
+.primary {
+  background: #22c55e;
+  color: #000;
 }
 
-.btn-secondary {
-  border:1px solid #38bdf8;
-  color:#fff;
-  background:transparent;
+.secondary {
+  border: 1px solid #38bdf8;
+  color: #fff;
+  background: transparent;
 }
 
 .section {
-  margin-top:30px;
+  margin-top: 30px;
 }
 
 .card {
-  background:rgba(255,255,255,0.04);
-  padding:18px;
-  border-radius:12px;
-  margin-top:15px;
-  border:1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  padding: 18px;
+  border-radius: 12px;
+  margin-top: 15px;
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
 ul {
-  padding-left:18px;
-  opacity:0.85;
+  padding-left: 18px;
+  opacity: 0.85;
 }
 
 .small {
-  font-size:12px;
-  opacity:0.6;
-  text-align:center;
-  margin-top:10px;
+  font-size: 12px;
+  opacity: 0.6;
+  text-align: center;
+  margin-top: 10px;
 }
 
 /* sticky CTA */
 .sticky {
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:#05070f;
-  padding:15px;
-  border-top:1px solid rgba(255,255,255,0.1);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #05070f;
+  padding: 15px;
+  border-top: 1px solid rgba(255,255,255,0.1);
 }
 </style>
 
-<!-- TRACK CLICK FUNCTION -->
 <script>
-function trackAndGo(url, eventName) {
+/* =========================
+   TRACKING CORE
+========================= */
+function track(event, data = {}) {
   if (window.gtag) {
-    gtag('event', eventName, {
-      event_category: 'funnel',
-      event_label: url
+    gtag("event", event, {
+      event_category: "drone_funnel",
+      event_label: window.location.href,
+      ...data
     });
   }
+
+  // optional: send to your SkymasterOS backend
+  fetch("/api/hot-lead", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({
+      event,
+      url: window.location.href,
+      timestamp: Date.now()
+    })
+  }).catch(() => {});
+}
+
+/* =========================
+   CTA HANDLER
+========================= */
+function go(url, event) {
+  track(event, { url });
   window.location.href = url;
 }
 </script>
@@ -144,88 +166,21 @@ function trackAndGo(url, eventName) {
   <h1>Inspect Roofs in Minutes Without Climbing Them</h1>
 
   <p>
-    Skymaster X1 gives contractors instant 4K aerial roof inspections so you can quote faster, reduce risk, and close more jobs.
+    Skymaster X1 gives contractors instant 4K aerial inspections so they can quote faster, reduce risk, and close more jobs.
   </p>
 
-  <!-- BUY CTA -->
-  <a class="btn btn-primary"
+  <!-- BUY -->
+  <a class="btn primary"
      href="https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i"
-     onclick="trackAndGo(this.href,'buy_click')">
+     onclick="go(this.href,'buy_click')">
      Buy Now — $899
   </a>
 
-  <!-- CONTRACTOR CTA (FIXED) -->
-  <a class="btn btn-secondary"
+  <!-- APPLY -->
+  <a class="btn secondary"
      href="https://northsky-flow-os.onrender.com/apply"
-     onclick="trackAndGo(this.href,'contractor_click')">
+     onclick="go(this.href,'contractor_click')">
      Check Contractor Availability
   </a>
 
-  <p class="small">Limited contractor rollout per region</p>
-
-</section>
-
-<!-- PROBLEM -->
-<section class="section">
-  <div class="card">
-    <h3>Why Contractors Lose Money</h3>
-    <ul>
-      <li>Roof inspections are slow and manual</li>
-      <li>Roof climbing increases risk + insurance costs</li>
-      <li>Homeowners don’t trust quotes without visuals</li>
-      <li>Slow estimates = lost deals to competitors</li>
-    </ul>
-  </div>
-</section>
-
-<!-- SOLUTION -->
-<section class="section">
-  <div class="card">
-    <h3>The Fix: Skymaster X1</h3>
-    <ul>
-      <li>Instant 4K aerial roof capture</li>
-      <li>No roof climbing required</li>
-      <li>Visual proof that closes homeowners faster</li>
-      <li>Faster inspections = more jobs per day</li>
-    </ul>
-  </div>
-</section>
-
-<!-- BENEFITS -->
-<section class="section">
-  <div class="card">
-    <h3>What You Get</h3>
-    <ul>
-      <li>Professional roofing drone system</li>
-      <li>High-resolution inspection workflow</li>
-      <li>Designed for contractors & roofing crews</li>
-      <li>Plug-and-play business integration</li>
-    </ul>
-  </div>
-</section>
-
-<!-- TRUST -->
-<section class="section">
-  <div class="card">
-    <h3>Built for Real Contractors</h3>
-    <ul>
-      <li>Used for inspection + quoting workflows</li>
-      <li>Reduces inspection time instantly</li>
-      <li>Helps increase job closing rate</li>
-    </ul>
-  </div>
-</section>
-
-</div>
-
-<!-- STICKY BUY CTA -->
-<div class="sticky">
-  <a class="btn btn-primary"
-     href="https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i"
-     onclick="trackAndGo(this.href,'sticky_buy_click')">
-     Buy Skymaster X1 — $899
-  </a>
-</div>
-
-</body>
-</html>
+  <p
